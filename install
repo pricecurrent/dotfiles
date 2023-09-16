@@ -9,9 +9,9 @@ rm -rf $HOME/.config/kitty
 ln -s $DOTFILES/kitty $HOME/.config/kitty
 
 rm -rf $HOME/.tmux.conf
-ln -s $DOTFILES/tmux/tmux.conf $HOME/.tmux.conf
+ln -sf $DOTFILES/tmux/tmux.conf $HOME/.tmux.conf
 
-mkdir -p $HOME/bin
+# Scripts
+mkdir -p $HOME/.local/bin
 
-rm -rf $HOME/bin/t
-ln -s $DOTFILES/scripts/t $HOME/bin/t
+ln -sf $DOTFILES/scripts/t $HOME/.local/bin/t
