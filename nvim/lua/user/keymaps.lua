@@ -20,15 +20,17 @@ vim.keymap.set('n', 'q:', ':q')
 -- Paste replace visual selection without copying it.
 vim.keymap.set('v', 'p', '"_dP')
 
--- Easy insertion of a trailing ; or , from insert mode.
+-- Easy insertion of a trailing ; or ,
 vim.keymap.set('i', ';;', '<Esc>A;')
 vim.keymap.set('i', ',,', '<Esc>A,')
+--vim.keymap.set('n', ';;', '<Esc>A;')
+--vim.keymap.set('n', ',,', '<Esc>A,')
 
 -- Quickly clear search highlighting.
 vim.keymap.set('n', '<Leader>k', ':nohlsearch<CR>')
 
 -- Open the current file in the default program (on Mac this should just be just `open`).
-vim.keymap.set('n', '<Leader>x', ':!xdg-open %<CR><CR>')
+vim.keymap.set('n', '<Leader>x', ':!open %<CR><CR>')
 
 -- Move lines up and down.
 vim.keymap.set('i', '<A-j>', '<Esc>:move .+1<CR>==gi')
