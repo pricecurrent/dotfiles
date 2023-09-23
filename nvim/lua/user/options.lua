@@ -26,6 +26,8 @@ vim.opt.list = true -- enable the below listchars
 vim.opt.listchars = { tab = '▸ ', trail = '·' }
 vim.opt.fillchars:append({ eob = ' ' }) -- remove the ~ from end of buffer
 
+vim.opt.signcolumn = 'yes:1'
+
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 

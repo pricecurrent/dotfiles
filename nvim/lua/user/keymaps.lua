@@ -23,14 +23,18 @@ vim.keymap.set('v', 'p', '"_dP')
 -- Easy insertion of a trailing ; or ,
 vim.keymap.set('i', ';;', '<Esc>A;')
 vim.keymap.set('i', ',,', '<Esc>A,')
---vim.keymap.set('n', ';;', '<Esc>A;')
---vim.keymap.set('n', ',,', '<Esc>A,')
 
 -- Quickly clear search highlighting.
 vim.keymap.set('n', '<Leader>k', ':nohlsearch<CR>')
 
 -- Open the current file in the default program (on Mac this should just be just `open`).
 vim.keymap.set('n', '<Leader>x', ':!open %<CR><CR>')
+
+-- Close all buffers
+vim.keymap.set('n', '<leader>W', ':bufdo bd<CR>')
+
+-- Redo with U
+vim.keymap.set('n', 'U', '<C-r>')
 
 -- Move lines up and down.
 vim.keymap.set('i', '<A-j>', '<Esc>:move .+1<CR>==gi')
@@ -39,3 +43,5 @@ vim.keymap.set('n', '<A-j>', ':move .+1<CR>==')
 vim.keymap.set('n', '<A-k>', ':move .-2<CR>==')
 vim.keymap.set('v', '<A-j>', ":move '>+1<CR>gv=gv")
 vim.keymap.set('v', '<A-k>', ":move '<-2<CR>gv=gv")
+vim.keymap.set('n', '<leader>l', ":bn<CR>")
+vim.keymap.set('n', '<leader>h', ":bp<CR>")
