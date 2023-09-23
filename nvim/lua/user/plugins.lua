@@ -180,8 +180,6 @@ use({
     end,
   })
 
-bla bla
-
   -- Git integration.
 use({
   'lewis6991/gitsigns.nvim',
@@ -208,8 +206,8 @@ use({
   config = function()
     vim.g.floaterm_width = 0.8
     vim.g.floaterm_height = 0.8
-    vim.keymap.set('n', '<leader>t', ':FloatermToggle<CR>')
-    vim.keymap.set('t', '<leader>t', '<C-\\><C-n>:FloatermToggle<CR>')
+    vim.keymap.set('n', '<leader><ESC>', ':FloatermToggle<CR>')
+    vim.keymap.set('t', '<leader><ESC>', '<C-\\><C-n>:FloatermToggle<CR>')
     vim.cmd([[
       highlight link Floaterm CursorLine
       highlight link FloatermBorder CursorLineBg
