@@ -1,16 +1,29 @@
 require('mason').setup()
 require('mason-lspconfig').setup({ automatic_installation = true })
 
+local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
+
 -- PHP server
-require'lspconfig'.intelephense.setup{}
+require'lspconfig'.intelephense.setup{ capabilities = capabilities}
 
 -- JS server
 require'lspconfig'.volar.setup{
-  filetypes = {'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json'}
+  capabilities = capabilities,
+  filetypes = {'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue'}
 }
 
 -- Tailwind
-require'lspconfig'.tailwindcss.setup{}
+require'lspconfig'.tailwindcss.setup{ capabilities = capabilities }
+
+-- JSON
+require('lspconfig').jsonls.setup({
+  capabilities = capabilities,
+  settings = {
+    json = {
+      schemas = require('schemastore').json.schemas(),
+    },
+  },
+})
 
 
 -- Keymaps
