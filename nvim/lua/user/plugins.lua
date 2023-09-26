@@ -169,7 +169,7 @@ use({
       require('user/plugins/lualine')
     end
   })
-  
+
   -- Display buffers as tabs.
   use({
     'akinsho/bufferline.nvim',
@@ -236,8 +236,10 @@ use({
       'williamboman/mason.nvim',
       'williamboman/mason-lspconfig.nvim',
       'b0o/schemastore.nvim',
+      'jose-elias-alvarez/null-ls.nvim',
+      'jayp0521/mason-null-ls.nvim',
     },
-    config = function() 
+    config = function()
       require('user/plugins/lspconfig')
     end
   })
@@ -245,18 +247,42 @@ use({
 use({
     'hrsh7th/nvim-cmp',
     requires = {
-     'hrsh7th/cmp-nvim-lsp', 
-      'hrsh7th/cmp-nvim-lsp-signature-help', 
-      'hrsh7th/cmp-buffer', 
-      'hrsh7th/cmp-path', 
-      'L3MON4D3/LuaSnip',
-      'saadparwaiz1/cmp_luasnip',
-      'onsails/lspkind-nvim',
+     'hrsh7th/cmp-nvim-lsp',
+     'hrsh7th/cmp-nvim-lsp-signature-help',
+     'hrsh7th/cmp-buffer',
+     'hrsh7th/cmp-path',
+     'L3MON4D3/LuaSnip',
+     'saadparwaiz1/cmp_luasnip',
+     'onsails/lspkind-nvim',
     },
     config = function()
       require('user/plugins/cmp')
     end
   })
+
+-- PHP Refactoring Tools
+use({
+  'phpactor/phpactor',
+  ft = 'php',
+  run = 'composer install --no-dev --optimize-autoloader',
+  config = function()
+    vim.keymap.set('n', '<leader>m', ':PhpactorContextMenu<CR>')
+    vim.keymap.set('n', 'm', ':PhpactorImportClass<CR>')
+    vim.keymap.set('n', 'gd', ':PhpactorGotoDefinition<CR>')
+    vim.keymap.set('n', '<leader>kn', ':PhpactorClassNew<CR>')
+  end,
+})
+
+-- Project Configuration.
+use({
+  'tpope/vim-projectionist',
+  requires = 'tpope/vim-dispatch',
+  config = function()
+    require('user/plugins/projectionist')
+  end,
+})
+
+
 
 -- Automatically set up your configuration after cloning packer.nvim
 -- Put this at the end after all plugins
