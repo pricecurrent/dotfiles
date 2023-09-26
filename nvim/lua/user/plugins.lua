@@ -282,6 +282,16 @@ use({
   end,
 })
 
+-- Testing helper
+use({
+  'vim-test/vim-test',
+  config = function()
+    require('user/plugins/vim-test')
+  end,
+})
+
+
+
 
 
 -- Automatically set up your configuration after cloning packer.nvim
