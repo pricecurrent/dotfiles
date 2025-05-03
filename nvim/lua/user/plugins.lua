@@ -30,20 +30,7 @@ use('wbthomason/packer.nvim')
 use({
   'jessarcher/onedark.nvim',
   config = function()
-    vim.cmd('colorscheme onedark')
-
-    vim.api.nvim_set_hl(0, 'FloatBorder', {
-      fg = vim.api.nvim_get_hl_by_name('NormalFloat', true).background,
-      bg = vim.api.nvim_get_hl_by_name('NormalFloat', true).background,
-    })
-
-    -- Status line settings
-    vim.api.nvim_set_hl(0, 'StatusLineNonText', {
-      fg = vim.api.nvim_get_hl_by_name('NonText', true).foreground,
-      bg = vim.api.nvim_get_hl_by_name('StatusLine', true).background,
-    })
-
-    vim.api.nvim_set_hl(0, 'IndentBlanklineChar', { fg = '#2F313C' })
+    require('user/plugins/theme')
   end,
 })
 
@@ -154,13 +141,13 @@ use({
   })
 
 -- File tree sidebar
-use({
-    'kyazdani42/nvim-tree.lua',
-    requires = 'kyazdani42/nvim-web-devicons',
-    config = function()
-      require('user/plugins/nvim-tree')
-    end
-  })
+-- use({
+--     'kyazdani42/nvim-tree.lua',
+--     requires = 'kyazdani42/nvim-web-devicons',
+--     config = function()
+--       require('user/plugins/nvim-tree')
+--     end
+--   })
 
   use({
     'nvim-lualine/lualine.nvim',
@@ -171,14 +158,14 @@ use({
   })
 
   -- Display buffers as tabs.
-  use({
-    'akinsho/bufferline.nvim',
-    requires = 'kyazdani42/nvim-web-devicons',
-    after = 'onedark.nvim',
-    config = function()
-      require('user/plugins/bufferline')
-    end,
-  })
+  -- use({
+  --   'akinsho/bufferline.nvim',
+  --   requires = 'kyazdani42/nvim-web-devicons',
+  --   after = 'onedark.nvim',
+  --   config = function()
+  --     require('user/plugins/bufferline')
+  --   end,
+  -- })
 
   -- Git integration.
 use({
@@ -216,19 +203,19 @@ use({
 })
 
 -- Improved syntax highlighting
-use({
-  'nvim-treesitter/nvim-treesitter',
-  run = function()
-    require('nvim-treesitter.install').update({ with_sync = true })
-  end,
-  requires = {
-    'JoosepAlviste/nvim-ts-context-commentstring',
-    'nvim-treesitter/nvim-treesitter-textobjects',
-  },
-  config = function()
-    require('user/plugins/treesitter')
-  end,
-})
+-- use({
+--   'nvim-treesitter/nvim-treesitter',
+--   run = function()
+--     require('nvim-treesitter.install').update({ with_sync = true })
+--   end,
+--   requires = {
+--     'JoosepAlviste/nvim-ts-context-commentstring',
+--     'nvim-treesitter/nvim-treesitter-textobjects',
+--   },
+--   config = function()
+--     require('user/plugins/treesitter')
+--   end,
+-- })
 
 use({
     'neovim/nvim-lspconfig',

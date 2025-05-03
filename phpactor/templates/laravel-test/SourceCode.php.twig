@@ -2,22 +2,20 @@
 
 namespace {{ prototype.namespace }};
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
+use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 {% for class in prototype.classes %}
 class {{ class.name }} extends TestCase
 {
--- Project Configuration.
-use({
-  'tpope/vim-projectionist',
-  requires = 'tpope/vim-dispatch',
-  config = function()
-    require('user/plugins/projectionist')
-  end,
-})
+    use DatabaseTransactions;
 
-    use RefreshDatabase;
+    #[Test]
+    public function it_()
+    {
+
+    }
 }
 {% endfor %}
 
