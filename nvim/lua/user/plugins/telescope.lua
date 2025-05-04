@@ -12,7 +12,7 @@ vim.cmd([[
 require('telescope').setup({
   defaults = {
     path_display = { truncate = 1 },
-    prompt_prefix = '   ',
+    prompt_prefix = ' 🔍 ',
     selection_caret = '  ',
     layout_config = {
       prompt_position = 'top',

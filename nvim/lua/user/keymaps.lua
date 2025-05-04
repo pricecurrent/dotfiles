@@ -20,6 +20,24 @@ vim.keymap.set('n', 'q:', ':q')
 -- Paste replace visual selection without copying it.
 vim.keymap.set('v', 'p', '"_dP')
 
+-- Delete a word backwards without copying it.
+vim.keymap.set('n', 'dw', '"_dw')
+vim.keymap.set('n', 'diw', '"_diw')
+vim.keymap.set('n', 'dd', '"_dd')
+vim.keymap.set('v', 'd', '"_d')
+vim.keymap.set('n', 'x', '"_x')
+vim.keymap.set('n', 'D', '"_D')
+vim.keymap.set('n', 'c', '"_c')
+vim.keymap.set('n', 'ciw', '"_ciw')
+vim.keymap.set('n', 'cc', '"_cc')
+vim.keymap.set('v', 'c', '"_c')
+vim.keymap.set('n', 'C', '"_C')
+vim.keymap.set('n', 's', '"_s')
+vim.keymap.set('n', 'S', '"_S')
+vim.keymap.set('n', 'X', '"_X')
+
+
+
 -- Easy insertion of a trailing ; or ,
 vim.keymap.set('i', ';;', '<Esc>A;')
 vim.keymap.set('i', ',,', '<Esc>A,')

@@ -1,4 +1,4 @@
-local separator = { '"▏"', color = 'StatusLineNonText' }
+local separator = { '"💫"', color = 'StatusLineNonText' }
 
 require('lualine').setup({
   options = {
@@ -15,13 +15,12 @@ require('lualine').setup({
   },
   sections = {
     lualine_a = {
-      'mode',
       separator,
+      'mode',
     },
     lualine_b = {
-      'branch',
-      'diff',
-      separator,
+      -- 'branch',
+      -- 'diff',
       -- function ()
       --   return '🖧  ' .. vim.pesc(tostring(#vim.tbl_keys(vim.lsp.buf_get_clients())) or '')
       -- end,

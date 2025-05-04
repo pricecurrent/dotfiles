@@ -48,8 +48,8 @@ require('lspconfig').jsonls.setup({
   },
 })
 
--- null-ls
-local null_ls = require('null-ls')
+-- none-ls
+local null_ls = require('none-ls')
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 null_ls.setup({
   temp_dir = '/tmp',

@@ -26,9 +26,10 @@ local use = require('packer').use
 -- Packer can manage itself.
 use('wbthomason/packer.nvim')
 
--- One Dark theme.
+-- Theme
 use({
-  'jessarcher/onedark.nvim',
+  'catppuccin/nvim',
+  as = 'catppuccin',
   config = function()
     require('user/plugins/theme')
   end,
@@ -141,14 +142,15 @@ use({
   })
 
 -- File tree sidebar
--- use({
---     'kyazdani42/nvim-tree.lua',
---     requires = 'kyazdani42/nvim-web-devicons',
---     config = function()
---       require('user/plugins/nvim-tree')
---     end
---   })
+use({
+    'kyazdani42/nvim-tree.lua',
+    requires = 'kyazdani42/nvim-web-devicons',
+    config = function()
+      require('user/plugins/nvim-tree')
+    end
+  })
 
+  -- Lualine
   use({
     'nvim-lualine/lualine.nvim',
     requires = 'kyazdani42/nvim-web-devicons',
@@ -158,20 +160,30 @@ use({
   })
 
   -- Display buffers as tabs.
-  -- use({
-  --   'akinsho/bufferline.nvim',
-  --   requires = 'kyazdani42/nvim-web-devicons',
-  --   after = 'onedark.nvim',
-  --   config = function()
-  --     require('user/plugins/bufferline')
-  --   end,
-  -- })
+  use({
+    'akinsho/bufferline.nvim',
+    requires = 'kyazdani42/nvim-web-devicons',
+    after = 'catppuccin',
+    config = function()
+      require('user/plugins/bufferline')
+    end,
+  })
 
   -- Git integration.
 use({
   'lewis6991/gitsigns.nvim',
   config = function()
-    require('gitsigns').setup()
+    require('gitsigns').setup({
+      require('gitsigns').setup({
+        signs = {
+          add          = { text = '' },
+          change       = { text = '' },
+          delete       = { text = '' },
+          topdelete    = { text = '' },
+          changedelete = { text = '' },
+        },
+      })
+    })
     vim.keymap.set('n', ']h', ':Gitsigns next_hunk<CR>')
     vim.keymap.set('n', '[h', ':Gitsigns prev_hunk<CR>')
     vim.keymap.set('n', 'gs', ':Gitsigns stage_hunk<CR>')
@@ -182,10 +194,10 @@ use({
 })
 
 -- Git commands.
-use({
-  'tpope/vim-fugitive',
-  requires = 'tpope/vim-rhubarb',
-})
+-- use({
+--   'tpope/vim-fugitive',
+--   requires = 'tpope/vim-rhubarb',
+-- })
 
 -- Float terminal
 use({
@@ -219,15 +231,8 @@ use({
 
 use({
     'neovim/nvim-lspconfig',
-    requires = {
-      'williamboman/mason.nvim',
-      'williamboman/mason-lspconfig.nvim',
-      'b0o/schemastore.nvim',
-      'jose-elias-alvarez/null-ls.nvim',
-      'jayp0521/mason-null-ls.nvim',
-    },
     config = function()
-      require('user/plugins/lspconfig')
+      require('user/plugins/lsp')
     end
   })
 
