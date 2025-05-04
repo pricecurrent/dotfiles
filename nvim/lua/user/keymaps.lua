@@ -61,5 +61,68 @@ vim.keymap.set('n', '<A-j>', ':move .+1<CR>==')
 vim.keymap.set('n', '<A-k>', ':move .-2<CR>==')
 vim.keymap.set('v', '<A-j>', ":move '>+1<CR>gv=gv")
 vim.keymap.set('v', '<A-k>', ":move '<-2<CR>gv=gv")
+-- Move between buffers
 vim.keymap.set('n', '<leader>l', ":bn<CR>")
 vim.keymap.set('n', '<leader>h', ":bp<CR>")
+
+-- New File
+vim.keymap.set('n', '<leader>nf', function()
+  vim.ui.input({ prompt = "New file path: " }, function(input)
+    if input and #input > 0 then
+      vim.cmd('tabnew')
+      vim.fn.mkdir(vim.fn.fnamemodify(input, ':h'), 'p')
+      vim.cmd('edit ' .. input)
+    end
+  end)
+end, { desc = 'Create new file (with dirs)', noremap = true, silent = true })
+
+-- New Relative File
+vim.api.nvim_create_user_command('NewRelativeFile', function(args)
+  local input = args.args
+  if input == "" then return end
+
+  -- Get the current buffer's directory
+  local current_dir = vim.fn.expand('%:p:h')
+  local full_path = vim.fn.fnamemodify(current_dir .. '/' .. input, ':p')
+
+  -- Create parent dirs if needed
+  vim.fn.mkdir(vim.fn.fnamemodify(full_path, ':h'), 'p')
+
+  -- Open in a new tab (optional — change to :edit for current window)
+  vim.cmd('tabnew ' .. full_path)
+end, {
+  nargs = 1,
+  complete = 'file',
+})
+
+vim.keymap.set('n', '<leader>nr', function()
+  vim.ui.input({ prompt = "Relative path from current file: " }, function(input)
+    if input and #input > 0 then
+      vim.cmd('NewRelativeFile ' .. input)
+    end
+  end)
+end, { desc = 'New file relative to current file' })
+
+-- Delete current file
+vim.keymap.set('n', '<leader>df', ':DeleteFile<CR>', { desc = 'Delete current file' })
+vim.api.nvim_create_user_command('DeleteFile', function()
+  local file = vim.fn.expand('%')
+  if file == '' or vim.fn.filereadable(file) == 0 then
+    vim.notify('No file to delete', vim.log.levels.WARN)
+    return
+  end
+
+  vim.ui.input({ prompt = 'Delete "' .. file .. '"? [Y/n]: ' }, function(input)
+    if input == nil or input == '' then
+      input = 'y'
+    end
+
+    if input:lower() == 'y' then
+      vim.fn.delete(file)
+      vim.cmd('bdelete!')
+      vim.notify('Deleted ' .. file)
+    else
+      vim.notify('Aborted deletion of ' .. file)
+    end
+  end)
+end, {})
