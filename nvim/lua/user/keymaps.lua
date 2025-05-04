@@ -103,26 +103,3 @@ vim.keymap.set('n', '<leader>nr', function()
   end)
 end, { desc = 'New file relative to current file' })
 
--- Delete current file
-vim.keymap.set('n', '<leader>df', ':DeleteFile<CR>', { desc = 'Delete current file' })
-vim.api.nvim_create_user_command('DeleteFile', function()
-  local file = vim.fn.expand('%')
-  if file == '' or vim.fn.filereadable(file) == 0 then
-    vim.notify('No file to delete', vim.log.levels.WARN)
-    return
-  end
-
-  vim.ui.input({ prompt = 'Delete "' .. file .. '"? [Y/n]: ' }, function(input)
-    if input == nil or input == '' then
-      input = 'y'
-    end
-
-    if input:lower() == 'y' then
-      vim.fn.delete(file)
-      vim.cmd('bdelete!')
-      vim.notify('Deleted ' .. file)
-    else
-      vim.notify('Aborted deletion of ' .. file)
-    end
-  end)
-end, {})
