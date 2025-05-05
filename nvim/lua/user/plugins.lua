@@ -214,20 +214,22 @@ use({
   end
 })
 
+
 -- Improved syntax highlighting
--- use({
---   'nvim-treesitter/nvim-treesitter',
---   run = function()
---     require('nvim-treesitter.install').update({ with_sync = true })
---   end,
---   requires = {
---     'JoosepAlviste/nvim-ts-context-commentstring',
---     'nvim-treesitter/nvim-treesitter-textobjects',
---   },
---   config = function()
---     require('user/plugins/treesitter')
---   end,
--- })
+
+ use({
+   'nvim-treesitter/nvim-treesitter',
+       run = function()
+        local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
+        ts_update()
+    end,
+   requires = {
+     'nvim-treesitter/nvim-treesitter-textobjects',
+   },
+   config = function()
+     require('user/plugins/treesitter')
+   end,
+ })
 
 use({
     'neovim/nvim-lspconfig',
